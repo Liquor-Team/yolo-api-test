@@ -20,6 +20,7 @@ public class ApiMessageFactory {
     private final String ec2Address;
     private final WebClient webClient = WebClient.builder().baseUrl(ec2Address).build();
 
+    // TODO : 406 에러에 대한 처리 필요 (request time out)
     public ApiResponse sendRequestMessage() {
         MultipartBodyBuilder builder = new MultipartBodyBuilder();
         builder.part("file", imageGenerator.getImageFile());
