@@ -1,9 +1,8 @@
 package liquorteam.yoloapitest.schedule;
 
-import liquorteam.yoloapitest.message.ApiMessageFactory;
-import liquorteam.yoloapitest.message.ApiResponse;
-import liquorteam.yoloapitest.result.ResultRecorder;
-import lombok.NoArgsConstructor;
+import liquorteam.yoloapitest.message.YoloApiMessageFactory;
+import liquorteam.yoloapitest.dto.YoloApiResponseDto;
+import liquorteam.yoloapitest.result.YoloApiCallResultRecorder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -13,18 +12,18 @@ import org.springframework.stereotype.Controller;
 public class YoloApiCallScheduler {
 
     private int time = 0;
-    private final ApiMessageFactory apiMessageFactory;
-    private final ResultRecorder resultRecorder;
+    private final YoloApiMessageFactory yoloApiMessageFactory;
+    private final YoloApiCallResultRecorder yoloApiCallResultRecorder;
 
     @Scheduled(cron = "0/10 * * * * ?")
     public void apiCallTest() throws Exception {
         time += 10;
-        ApiResponse response = apiMessageFactory.sendRequestMessage();
+        YoloApiResponseDto response = yoloApiMessageFactory.sendRequestMessage();
         if(response != null) {
-            resultRecorder.recordSuccessResult(response);
+            yoloApiCallResultRecorder.recordSuccessResult(response);
         }
         if (time == 60) {
-            resultRecorder.destroyFileConnector();
+            yoloApiCallResultRecorder.destroyFileConnector();
             System.exit(0);
         }
     }
