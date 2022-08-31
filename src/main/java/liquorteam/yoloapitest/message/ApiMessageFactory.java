@@ -2,10 +2,12 @@ package liquorteam.yoloapitest.message;
 
 import liquorteam.yoloapitest.image.ImageGenerator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -13,12 +15,12 @@ import reactor.core.publisher.Mono;
 import java.awt.*;
 
 @RequiredArgsConstructor
+@Component
 public class ApiMessageFactory {
 
     private final ImageGenerator imageGenerator;
-    @Value("${AWS_EC2_ADDRESS}")
-    private final String ec2Address;
-    private final WebClient webClient = WebClient.builder().baseUrl(ec2Address).build();
+    static private final WebClient webClient = WebClient.builder().baseUrl("http://ec2-43-200-62-27.ap-northeast-2.compute.amazonaws.com:80").build();
+
 
     // TODO : 406 에러에 대한 처리 필요 (request time out)
     public ApiResponse sendRequestMessage() {
@@ -33,5 +35,6 @@ public class ApiMessageFactory {
                 .block();
         return response;
     }
+
 
 }
