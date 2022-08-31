@@ -1,6 +1,16 @@
 package liquorteam.yoloapitest.message;
 
-public class ApiResponse {
+import liquorteam.yoloapitest.liquor.Liquor;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    private String success;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class ApiResponse {
+    private Liquor[] liquors;
+    private int size;
 }

@@ -1,9 +1,11 @@
 package liquorteam.yoloapitest.image;
 
+import lombok.NoArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 @Component
+@NoArgsConstructor
 public class ImageGenerator {
 
     public ClassPathResource getImageFile() {
