@@ -1,6 +1,5 @@
-package liquorteam.yoloapitest.message;
+package liquorteam.yoloapitest.dto;
 
-import liquorteam.yoloapitest.liquor.Liquor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ApiResponse {
+public class YoloApiResponseDto {
     private Liquor[] liquors;
     private int size;
 }

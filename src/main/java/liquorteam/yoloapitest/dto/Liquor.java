@@ -1,4 +1,4 @@
-package liquorteam.yoloapitest.liquor;
+package liquorteam.yoloapitest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
