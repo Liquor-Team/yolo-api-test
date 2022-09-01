@@ -62,18 +62,22 @@ public class YoloApiCallResultRecorder implements ResultRecorder {
         String errorCause = "[Error Http Status Code] 4xx \n";
         file.write(errorCause);
         System.out.print(errorCause);
+        //destroyFileConnector();
+        //System.exit(0);
     }
 
     @Override
-    public void record500FailedResult() throws IOException {
+    public void record500FailedResult(String statusCode) throws IOException {
         resultCnt += 1;
         String result = "########### Api Call Count : " + resultCnt + " ###########\n";
         file.write(result);
         System.out.print(result);
 
-        String errorCause = "[Error Http Status Code] 5xx \n";
+        String errorCause = "[Error Http Status Code] " + statusCode + " \n";
         file.write(errorCause);
         System.out.print(errorCause);
+        //destroyFileConnector();
+        //System.exit(0);
     }
 
     @Override
