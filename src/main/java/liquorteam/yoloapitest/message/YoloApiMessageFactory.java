@@ -17,9 +17,11 @@ import java.io.IOException;
 @Component
 public class YoloApiMessageFactory implements ApiMessageFactory {
 
+    private int cnt = 0;
     private final ImageGenerator imageGenerator;
     private final YoloApiCallResultRecorder yoloApiCallResultRecorder;
-    static private final WebClient webClient = WebClient.builder().baseUrl().build();
+    // TODO : ec2 주소 하드코딩 빼낼 필요
+    static private final WebClient webClient = WebClient.builder().baseUrl("").build();
 
     @Override
     public YoloApiResponseDto sendRequestMessage() {
@@ -40,7 +42,13 @@ public class YoloApiMessageFactory implements ApiMessageFactory {
                 })
                 .onStatus(HttpStatus::is5xxServerError, clientResponse -> {
                     try {
-                        yoloApiCallResultRecorder.record500FailedResult();
+                        cnt += 1;
+                        String statusCode = clientResponse.statusCode().toString();
+                        yoloApiCallResultRecorder.record500FailedResult(statusCode);
+//                        if (cnt == 5) {
+//                            yoloApiCallResultRecorder.destroyFileConnector();
+//                            System.exit(0);
+//                        }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
