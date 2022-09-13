@@ -45,10 +45,10 @@ public class YoloApiMessageFactory implements ApiMessageFactory {
                         cnt += 1;
                         String statusCode = clientResponse.statusCode().toString();
                         yoloApiCallResultRecorder.record500FailedResult(statusCode);
-                        if (cnt == 2) {
-                            yoloApiCallResultRecorder.destroyFileConnector();
-                            System.exit(0);
-                        }
+//                        if (cnt == 5) {
+//                            yoloApiCallResultRecorder.destroyFileConnector();
+//                            System.exit(0);
+//                        }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

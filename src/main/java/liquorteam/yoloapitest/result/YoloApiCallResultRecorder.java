@@ -76,6 +76,14 @@ public class YoloApiCallResultRecorder implements ResultRecorder {
         String errorCause = "[Error Http Status Code] " + statusCode + " \n";
         file.write(errorCause);
         System.out.print(errorCause);
+
+        String timeInform = "[Timestamp] ";
+        LocalDateTime nowTime = LocalDateTime.now();
+        String formatedNow = nowTime.format(DateTimeFormatter.ofPattern("(yyyy / MM / dd)  HH : mm : ss\n"));
+        file.write(timeInform);
+        file.write(formatedNow);
+        System.out.print(timeInform);
+        System.out.print(formatedNow);
         //destroyFileConnector();
         //System.exit(0);
     }
